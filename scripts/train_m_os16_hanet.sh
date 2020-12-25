@@ -5,12 +5,12 @@
         --arch network.deepv3.DeepMobileNetV3PlusD_HANet \
         --city_mode 'train' \
         --lr_schedule poly \
-        --lr 0.00008 \
+        --lr 0.0003 \
         --poly_exp 0.9 \
-        --hanet_lr 0.01 \
+        --hanet_lr 0.0003 \
         --hanet_poly_exp 0.9 \
         --max_cu_epoch 10000 \
-        --class_uniform_pct 0.5 \
+        --class_uniform_pct 0.7 \
         --class_uniform_tile 1024 \
         --syncbn \
         --sgd \
@@ -20,13 +20,13 @@
         --rrotate 0 \
         --color_aug 0.25 \
         --gblur \
-        --max_iter 30000 \
+        --max_iter 7000 \
         --bs_mult 6 \
-        --hanet 0 0 0 2 0 \
+        --hanet 1 1 1 1 0 \
         --hanet_set 3 16 3 \
         --hanet_pos 2 1 \
         --pos_rfactor 8 \
-        --dropout 0.1 \
+        --dropout 0.12 \
         --pos_noise 0.3 \
         --aux_loss \
         --date 0101 \

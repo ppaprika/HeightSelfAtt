@@ -1,0 +1,26 @@
+12-17 21:51:00.830 train fine cities: ['train/aachen', 'train/bochum', 'train/bremen', 'train/cologne', 'train/darmstadt', 'train/dusseldorf', 'train/erfurt', 'train/hamburg', 'train/hanover', 'train/jena', 'train/krefeld', 'train/monchengladbach', 'train/strasbourg', 'train/stuttgart', 'train/tubingen', 'train/ulm', 'train/weimar', 'train/zurich']
+12-17 21:51:00.876 Cityscapes-train: 2975 images
+12-17 21:51:01.734 Class Uniform Percentage: 0.5
+12-17 21:51:01.736 Class Uniform items per Epoch:2975
+12-17 21:51:01.737 cls 0 len 5866
+12-17 21:51:01.737 cls 1 len 5184
+12-17 21:51:01.737 cls 2 len 5678
+12-17 21:51:01.738 cls 3 len 1312
+12-17 21:51:01.738 cls 4 len 1723
+12-17 21:51:01.738 cls 5 len 5656
+12-17 21:51:01.738 cls 6 len 2769
+12-17 21:51:01.738 cls 7 len 4860
+12-17 21:51:01.738 cls 8 len 5388
+12-17 21:51:01.738 cls 9 len 2440
+12-17 21:51:01.738 cls 10 len 4722
+12-17 21:51:01.738 cls 11 len 3719
+12-17 21:51:01.738 cls 12 len 1239
+12-17 21:51:01.738 cls 13 len 5075
+12-17 21:51:01.738 cls 14 len 444
+12-17 21:51:01.739 cls 15 len 348
+12-17 21:51:01.739 cls 16 len 188
+12-17 21:51:01.739 cls 17 len 575
+12-17 21:51:01.739 cls 18 len 2238
+12-17 21:51:01.742 val fine cities: ['val/munster', 'val/frankfurt', 'val/lindau']
+12-17 21:51:01.746 Cityscapes-val: 500 images
+12-17 21:51:03.835 Model params = 15.765M

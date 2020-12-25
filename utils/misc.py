@@ -60,10 +60,20 @@ def make_exp_name(args, parser):
     return exp_name
 
 def fast_hist(label_pred, label_true, num_classes):
+    # print("LABEL_PRED :", label_pred.shape)   2097152(1024 * 2048)
+    # print("LABEL_TRUE :", label_true.shape)
+    # for i in label_pred:
+    #     print(i)
     mask = (label_true >= 0) & (label_true < num_classes)
+    # print(mask.shape)
+    # print(label_pred.shape)
+    # exit()
     hist = np.bincount(
         num_classes * label_true[mask].astype(int) +
         label_pred[mask], minlength=num_classes ** 2).reshape(num_classes, num_classes)
+    # print(hist.shape)
+    # print(hist)
+    # exit()
     return hist
 
 def per_class_iu(hist):

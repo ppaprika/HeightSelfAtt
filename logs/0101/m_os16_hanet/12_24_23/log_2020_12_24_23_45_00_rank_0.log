@@ -1,0 +1,40 @@
+12-24 23:45:00.490 train fine cities: ['train/aachen', 'train/bochum', 'train/bremen', 'train/cologne', 'train/darmstadt', 'train/dusseldorf', 'train/erfurt', 'train/hamburg', 'train/hanover', 'train/jena', 'train/krefeld', 'train/monchengladbach', 'train/strasbourg', 'train/stuttgart', 'train/tubingen', 'train/ulm', 'train/weimar', 'train/zurich']
+12-24 23:45:00.536 Cityscapes-train: 2975 images
+12-24 23:45:01.390 Class Uniform Percentage: 0.5
+12-24 23:45:01.390 Class Uniform items per Epoch:2975
+12-24 23:45:01.391 cls 0 len 5866
+12-24 23:45:01.392 cls 1 len 5184
+12-24 23:45:01.392 cls 2 len 5678
+12-24 23:45:01.392 cls 3 len 1312
+12-24 23:45:01.392 cls 4 len 1723
+12-24 23:45:01.392 cls 5 len 5656
+12-24 23:45:01.392 cls 6 len 2769
+12-24 23:45:01.392 cls 7 len 4860
+12-24 23:45:01.392 cls 8 len 5388
+12-24 23:45:01.392 cls 9 len 2440
+12-24 23:45:01.392 cls 10 len 4722
+12-24 23:45:01.392 cls 11 len 3719
+12-24 23:45:01.393 cls 12 len 1239
+12-24 23:45:01.393 cls 13 len 5075
+12-24 23:45:01.393 cls 14 len 444
+12-24 23:45:01.393 cls 15 len 348
+12-24 23:45:01.393 cls 16 len 188
+12-24 23:45:01.393 cls 17 len 575
+12-24 23:45:01.393 cls 18 len 2238
+12-24 23:45:01.396 val fine cities: ['val/munster', 'val/frankfurt', 'val/lindau']
+12-24 23:45:01.400 Cityscapes-val: 500 images
+12-24 23:45:01.729 Model params = 17.019M
+12-24 23:45:24.465 [epoch 0], [iter 50 / 744 : 50], [loss 2.695865], [lr 0.009989], [lr_at 0.009989], [time 0.1901]
+12-24 23:45:37.246 [epoch 0], [iter 100 / 744 : 100], [loss 1.801804], [lr 0.009977], [lr_at 0.009977], [time 0.1240]
+12-24 23:45:49.972 [epoch 0], [iter 150 / 744 : 150], [loss 1.527612], [lr 0.009966], [lr_at 0.009966], [time 0.1233]
+12-24 23:46:02.704 [epoch 0], [iter 200 / 744 : 200], [loss 1.486358], [lr 0.009955], [lr_at 0.009955], [time 0.1234]
+12-24 23:46:15.508 [epoch 0], [iter 250 / 744 : 250], [loss 1.391128], [lr 0.009944], [lr_at 0.009944], [time 0.1243]
+12-24 23:46:28.281 [epoch 0], [iter 300 / 744 : 300], [loss 1.172263], [lr 0.009932], [lr_at 0.009932], [time 0.1239]
+12-24 23:46:41.226 [epoch 0], [iter 350 / 744 : 350], [loss 1.085372], [lr 0.009921], [lr_at 0.009921], [time 0.1256]
+12-24 23:46:54.001 [epoch 0], [iter 400 / 744 : 400], [loss 1.167300], [lr 0.009910], [lr_at 0.009910], [time 0.1239]
+12-24 23:47:07.044 [epoch 0], [iter 450 / 744 : 450], [loss 1.168601], [lr 0.009899], [lr_at 0.009899], [time 0.1263]
+12-24 23:47:20.035 [epoch 0], [iter 500 / 744 : 500], [loss 1.078859], [lr 0.009887], [lr_at 0.009887], [time 0.1258]
+12-24 23:47:32.927 [epoch 0], [iter 550 / 744 : 550], [loss 1.003292], [lr 0.009876], [lr_at 0.009876], [time 0.1250]
+12-24 23:47:45.968 [epoch 0], [iter 600 / 744 : 600], [loss 1.041101], [lr 0.009865], [lr_at 0.009865], [time 0.1265]
+12-24 23:47:59.091 [epoch 0], [iter 650 / 744 : 650], [loss 0.936278], [lr 0.009854], [lr_at 0.009854], [time 0.1274]
+12-24 23:48:12.259 [epoch 0], [iter 700 / 744 : 700], [loss 1.134000], [lr 0.009842], [lr_at 0.009842], [time 0.1277]

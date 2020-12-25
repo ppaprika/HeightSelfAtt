@@ -6,7 +6,7 @@ from network.mynn import Norm2d, Upsample
 from network.PosEmbedding import PosEmbedding1D, PosEncoding1D
 from network.HeightSelfAtt import HeightSelfAtt, HeightChannelAtt
 
-IfHAS = False
+IfHAS = True
 
 class HANet_Conv(nn.Module):
     
@@ -21,8 +21,8 @@ class HANet_Conv(nn.Module):
         self.sigmoid = nn.Sigmoid()
 
         if(IfHAS):
-            self.HCA = HeightChannelAtt()
-            # self.HSA = HeightSelfAtt()
+            # self.HCA = HeightChannelAtt()
+            self.HSA = HeightSelfAtt()
 
         if r_factor > 0:
             mid_1_channel = math.ceil(in_channel / r_factor)
@@ -94,22 +94,32 @@ class HANet_Conv(nn.Module):
 # torch.Size([8, 320, 16])
 # torch.Size([8, 320, 16])
         # 前HSA添加位置，性能无提升
+        # if(IfHAS):
+        #     x1d = self.HSA(x1d)
 
-        if pos is not None and self.pos_injection == 1:
-            if return_posmap:
-                x1d, pos_map1 = self.pos_emb1d_1st(x1d, pos, True)
-            else:
-                x1d = self.pos_emb1d_1st(x1d, pos)
+        # 取消了PosEnbedding试一试
+        # if pos is not None and self.pos_injection == 1:
+        #     print("PPPPPPPPPPPPPPPPPPP11111111111111111")
+        #     if return_posmap:
+        #         x1d, pos_map1 = self.pos_emb1d_1st(x1d, pos, True)
+        #     else:
+        #         x1d = self.pos_emb1d_1st(x1d, pos)
+        pos_map1 = torch.Tensor([1])
 
         if self.dropout_prob > 0:
             x1d = self.dropout(x1d)
         x1d = self.attention_first(x1d)
 
-        if pos is not None and self.pos_injection == 2:
-            if return_posmap:
-                x1d, pos_map2 = self.pos_emb1d_2nd(x1d, pos, True)
-            else:
-                x1d = self.pos_emb1d_2nd(x1d, pos)
+        # if pos is not None and self.pos_injection == 2:
+        #     print("PPPPPPPPPPPPPPPPPPP22222222222222222")
+        #     if return_posmap:
+        #         x1d, pos_map2 = self.pos_emb1d_2nd(x1d, pos, True)
+        #     else:
+        #         x1d = self.pos_emb1d_2nd(x1d, pos)
+        pos_map2 = torch.Tensor([1])
+
+        if(IfHAS):
+            x1d = self.HSA(x1d)
 
         x1d = self.attention_second(x1d)
 
@@ -125,8 +135,9 @@ class HANet_Conv(nn.Module):
         
         # print(x1d.shape)
         # torch.Size([6, 1280, 16])
-        if(IfHAS):
-            x1d = self.HCA(x1d)
+        # if(IfHAS):
+        # #     x1d = self.HCA(x1d)
+        #     x1d = self.HSA(x1d)
 
 
         x1d = F.interpolate(x1d, size=H, mode='linear')

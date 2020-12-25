@@ -112,19 +112,19 @@ def get_optimizer_attention(args, net):
                 if resnet_name[i] in name:
                     resnet_params.append(param)
                     # param.requires_grad=False
-                    print("resnet_name", name)
+                    # print("resnet_name", name)
                     is_resnet = True
                     break
         if not is_resnet:
             for i in range(len_hanet):
                 if hanet_name[i] in name:
                     attention_params.append(param)
-                    #print("hanet_name", name)
+                    # print("hanet_name", name)
                     is_hanet = True
                     break
         if not is_hanet and not is_resnet:
             base_params.append(param)
-            #print("base", name)
+            # print("base", name)
 
     if args.sgd:
         if args.backbone_lr > 0.0:

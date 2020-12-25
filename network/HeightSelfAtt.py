@@ -69,6 +69,6 @@ class HeightChannelAtt(nn.Module):
         W = torch.bmm(Q, K)
         W = self.SoftmaxForW(W)
         att = torch.bmm(W, V)
-        att = torch.mul(att, input)
+        # att = torch.mul(att, input)
         return att
         # 可以再来个与原始矩阵的element wise multiply

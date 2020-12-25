@@ -107,7 +107,7 @@ parser.add_argument('--scale_max', type=float, default=2.0,
 parser.add_argument('--weight_decay', type=float, default=5e-4)
 parser.add_argument('--momentum', type=float, default=0.9)
 # 加载模型继续训练
-parser.add_argument('--snapshot', type=str, default= "/home/mist/HANet/logs/0101/m_os16_hanet/12_21_09/best_epoch_26_mean-iu_0.75034.pth")
+parser.add_argument('--snapshot', type=str, default="/home/mist/HANet/logs/0101/m_os16_hanet/12_24_23/best_epoch_198_mean-iu_0.74101.pth")
 parser.add_argument('--snapshot_pe', type=str, default=None)
 parser.add_argument('--restore_optimizer', action='store_true', default=False)
 
@@ -155,9 +155,10 @@ parser.add_argument('--backbone_lr', type=float, default=0.0,
 parser.add_argument('--hanet_lr', type=float, default=0.0,
                     help='different learning rate on attention module')
 parser.add_argument('--hanet_wd', type=float, default=0.0001,
-                    help='different weight decay on attention module')                    
+                    help='different weight decay on attention module')
 parser.add_argument('--dropout', type=float, default=0.0)
 parser.add_argument('--pos_noise', type=float, default=0.0)
+# 是否加入Pos injection，原为False
 parser.add_argument('--no_pos_dataset', action='store_true', default=False,
                     help='get dataset with position information')
 parser.add_argument('--use_hanet', action='store_true', default=False,
@@ -504,11 +505,16 @@ def validate(val_loader, net, criterion, optim, scheduler, curr_epoch, writer, c
 
         iou_acc += fast_hist(predictions.numpy().flatten(), gt_image.numpy().flatten(),
                              args.dataset_cls.num_classes)
+        # print(iou_acc.shape)
+        # print(iou_acc)
+        # exit()
         del output, val_idx, data
 
     iou_acc_tensor = torch.cuda.FloatTensor(iou_acc)
     torch.distributed.all_reduce(iou_acc_tensor, op=torch.distributed.ReduceOp.SUM)
     iou_acc = iou_acc_tensor.cpu().numpy()
+    # print(iou_acc.shape)
+    # print(iou_acc)
 
     if args.local_rank == 0:
         if optim_at is not None:
