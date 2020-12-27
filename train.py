@@ -107,7 +107,7 @@ parser.add_argument('--scale_max', type=float, default=2.0,
 parser.add_argument('--weight_decay', type=float, default=5e-4)
 parser.add_argument('--momentum', type=float, default=0.9)
 # 加载模型继续训练
-parser.add_argument('--snapshot', type=str, default="/home/mist/HANet/logs/0101/m_os16_hanet/12_24_23/best_epoch_198_mean-iu_0.74101.pth")
+parser.add_argument('--snapshot', type=str, default="/home/mist/HANet/logs/0101/m_os16_hanet/12_27_10_SAWithAtt_76067/best_epoch_6_mean-iu_0.76067.pth")
 parser.add_argument('--snapshot_pe', type=str, default=None)
 parser.add_argument('--restore_optimizer', action='store_true', default=False)
 
@@ -329,8 +329,8 @@ def train(train_loader, net, optim, curr_epoch, writer, scheduler, max_iter, opt
     curr_iter = curr_epoch * len(train_loader)
 
     for i, data in enumerate(train_loader):
-        # inputs = (2,3,713,713)
-        # gts    = (2,713,713)
+        # inputs = (b_c,3,767,768)
+        # gts    = (b_c,768,768)
         if curr_iter >= max_iter:
             break
         start_ts = time.time()
@@ -341,6 +341,7 @@ def train(train_loader, net, optim, curr_epoch, writer, scheduler, max_iter, opt
             inputs, gts, _img_name, aux_gts, (pos_h, pos_w) = data
         else:
             inputs, gts, _img_name, aux_gts = data
+
 
         batch_pixel_size = inputs.size(0) * inputs.size(2) * inputs.size(3)
 

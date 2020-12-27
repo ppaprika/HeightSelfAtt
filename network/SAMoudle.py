@@ -5,7 +5,7 @@ import math
 from network.mynn import Norm2d, Upsample
 from network.PosEmbedding import PosEmbedding1D, PosEncoding1D
 
-scale_factor = 4
+scale_factor = 8
 
 class conv_block(nn.Module):
     def __init__(self,ch_in,ch_out):
@@ -47,6 +47,8 @@ class conv_block(nn.Module):
 #         # print(y.shape, x_res.shape)
 #         return (y * x_res) + y
 
+
+
 # 带selfAtt的版本
 class SqueezeAttentionBlock(nn.Module):
     def __init__(self, ch_in, ch_out):
@@ -74,26 +76,38 @@ class SqueezeAttentionBlock(nn.Module):
 class SASelfAtt(nn.Module):
     def __init__(self):
         super(SASelfAtt, self).__init__()
-        self.GetQ = nn.Linear(576, 576)
-        self.GetK = nn.Linear(576, 576)
-        self.GetV = nn.Linear(576, 576)
+        # self.GetQ = nn.Linear(576, 576)
+        # self.GetK = nn.Linear(576, 576)
+        # self.GetV = nn.Linear(576, 576)
         self.softMax = nn.Softmax(2)
-
+        self.dictConv = nn.Conv2d(256, 256, kernel_size = 3, stride = 1, padding = 1, bias = True)
 
     def forward(self, x):
+        # print(x.shape)
+        # exit()
         b_c, c_nums, h, w = x.shape
         x = x.view((b_c * c_nums, -1))
         # print(x.shape)
         # exit()
-        
-        Q = self.GetQ(x)
-        K = self.GetK(x)
-        V = self.GetV(x)
-        Q = Q.unsqueeze(2)
-        V = V.unsqueeze(2)
-        K = K.unsqueeze(1)
+        Q = torch.unsqueeze(x, 2)
+        K = torch.unsqueeze(x, 1)
+        V = torch.unsqueeze(x, 2)
+
         W = torch.bmm(Q, K)
+        W = W.view((b_c, c_nums, h*w, h*w))
+        W = self.dictConv(W)
+        W = W.view((b_c * c_nums, h*w, h*w))
         W = self.softMax(W)
         Att = torch.bmm(W, V)
         Att = Att.view((b_c, c_nums, h, w))
+        # Q = self.GetQ(x)
+        # K = self.GetK(x)
+        # V = self.GetV(x)
+        # Q = Q.unsqueeze(2)
+        # V = V.unsqueeze(2)
+        # K = K.unsqueeze(1)
+        # W = torch.bmm(Q, K)
+        # W = self.softMax(W)
+        # Att = torch.bmm(W, V)
+        # Att = Att.view((b_c, c_nums, h, w))
         return Att

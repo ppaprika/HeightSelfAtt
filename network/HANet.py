@@ -98,25 +98,25 @@ class HANet_Conv(nn.Module):
         #     x1d = self.HSA(x1d)
 
         # 取消了PosEnbedding试一试
-        # if pos is not None and self.pos_injection == 1:
-        #     print("PPPPPPPPPPPPPPPPPPP11111111111111111")
-        #     if return_posmap:
-        #         x1d, pos_map1 = self.pos_emb1d_1st(x1d, pos, True)
-        #     else:
-        #         x1d = self.pos_emb1d_1st(x1d, pos)
-        pos_map1 = torch.Tensor([1])
+        if pos is not None and self.pos_injection == 1:
+            # print("PPPPPPPPPPPPPPPPPPP11111111111111111")
+            if return_posmap:
+                x1d, pos_map1 = self.pos_emb1d_1st(x1d, pos, True)
+            else:
+                x1d = self.pos_emb1d_1st(x1d, pos)
+        # pos_map1 = torch.Tensor([1])
 
         if self.dropout_prob > 0:
             x1d = self.dropout(x1d)
         x1d = self.attention_first(x1d)
 
-        # if pos is not None and self.pos_injection == 2:
-        #     print("PPPPPPPPPPPPPPPPPPP22222222222222222")
-        #     if return_posmap:
-        #         x1d, pos_map2 = self.pos_emb1d_2nd(x1d, pos, True)
-        #     else:
-        #         x1d = self.pos_emb1d_2nd(x1d, pos)
-        pos_map2 = torch.Tensor([1])
+        if pos is not None and self.pos_injection == 2:
+            # print("PPPPPPPPPPPPPPPPPPP22222222222222222")
+            if return_posmap:
+                x1d, pos_map2 = self.pos_emb1d_2nd(x1d, pos, True)
+            else:
+                x1d = self.pos_emb1d_2nd(x1d, pos)
+        # pos_map2 = torch.Tensor([1])
 
         if(IfHAS):
             x1d = self.HSA(x1d)
